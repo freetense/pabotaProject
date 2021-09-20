@@ -15,8 +15,7 @@ class MainController extends Controller
 
     public function save(Request $request) {
         $url = $request->name;
-
-        if (filter_var($url, FILTER_VALIDATE_URL)) {
+        if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
             $value = MainModel::saves($url);
 
             return $value;
